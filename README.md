@@ -6,6 +6,7 @@
 4. 日付を指定して予定を確認
 5. 曜日ごとの時間割を確認
 6. あらかじめ決まっている日付のフォーマットと曜日を変換
+7. 素因数分解
 ---
 ## 全体を通して共通すること
 - 日付のフォーマットは`yyyyMMdd`の形。 ( 20230416 )
@@ -84,52 +85,14 @@ e
 `yyyyMMdd` (20230416) の日付を送ると対応する曜日を返信する。<br>曜日1文字を送ると1週間以内の対応する日付を返信する。
 
 ---
-# Botを作る
-## LINE Developers
-[LINE Developers Messaging API](https://developers.line.biz/ja/services/messaging-api/)にアクセスする。<br><br>
-今すぐはじめようを押す。<br>
-名前とメールアドレスを入力してアカウント作成する。<br>
-チャネルの各種設定をする。
-- チャネルの種類 → Messaging API
-- プロバイダー → 新規プロバイダー作成
-- プロバイダー名 → わかりやすいもの
-- 所在地・地域 → 住んでいる場所
-- アイコン、チャネル名 → トークルームで表示されるもの
-- チャネル名 → わかりやすいもの
-- チャネル説明 → Botの詳細
-- 大業種 → 個人
-- 小業種 → あてはまるもの
-- メールアドレス → メインで使っているもの
+## 7.素因数分解
+```
+f
+1以上の整数値
+```
+送られてきた整数値を素因数分解した状態で返信する。<br><br>
 
-規約を読んで同意する ×2<br>
-作成を押す<br><br>
-作成できたら
-- QRコードから友だちになっておく
-- <span style="color:yellow">Messaging API設定</span>の下部にある「チャネルアクセストークン(長期)」を発行してコピーする。<br><br>
-## Google Spreadsheet
-[Googleスプレッドシート](https://docs.google.com/spreadsheets/)にアクセスする。<br>
-空白で新しいシートを作成する。<br>
-上部にあるツールバーの拡張機能からApps Scriptに進む。<br>
-すでに書かれているコードを削除してからGithubリポジトリ内のCode.gsをコピペする。<br><br>
-## Google Apps Script
-3~26行目の `''`で囲まれた中をそれぞれ入力する。<br>
-- 4行目 コピーした「チャネルアクセストークン(長期)」を貼り付ける。
-- 6行目 スプレッドシートの`https://docs.google.com/spreadsheets/d/ この部分 /edit#gid=0`を貼り付ける。
-- 8行目 スプレッドシートの名前(画面下部に表示)を入力する。<br>
-
-321~346行目のコマンドキーを変えることで自由にコマンドを呼び出せる。<br><br>
-
-画面右上のデプロイから新しいデプロイを選択。<br>
-種類の選択からウェブアプリを選択<br>
-- 新しい説明文 → わかりやすい文章
-- アクセスできるユーザー → 全員
-
-デプロイを押す。<br>
-ウェブアプリのURLをコピーして、LINE Developersの<span style="color:yellow">Messaging API設定</span>内のWebhook URLに貼り付ける。<br><br>
-正しく出来ていればBotに正しいコマンドを送ると返信される。<br><br>
-
-## 関係のないメッセージが同時に返信される場合
-LINE Developersの<span style="color:yellow">Messaging API設定</span>から応答メッセージとあいさつメッセージを無効にする。<br><br>
+---
 # License
 The source code is licensed MIT. The website content is licensed CC BY 4.0,see LICENSE.<br>
 

@@ -1,4 +1,4 @@
-//4-23-2023-2:24a.m.
+//4-23-2023-2:24 --- Update 6-15-2023-19:33
 
 
 //LINEのアクセストークン
@@ -359,6 +359,16 @@ function doPost(e) {
     case 'E':
       replyText = exchange(planDate);
       break;
+    case 'f':
+    case 'F':
+      if (planDate > 0){
+        replyText = search(planDate);
+        replyText += '\n\nFinish';
+      }
+      else{
+        replyText = '1以上の整数を送信してください';
+      }
+      break;
     default:
       replyText = incorrectcommand;
       break;
@@ -435,6 +445,70 @@ function deleteRowOfDate(date) {
   for (var i = 1; i <= lastRow; i++) {
     if (sheet.getRange(i, 1).getValue() == date) {
       sheet.deleteRows(i);
+    }
+  }
+}
+
+var i = 0;
+var halfnum = 0;
+var rem = 0;
+var isPrime = 0;
+var result = '';
+var cachei = 0;
+var isEnd = 0;
+
+function search(num){
+  result = '['+num+']\n\n';
+halfnum = num / 2;
+  isEnd = 0;
+  isPrime = 0;
+  if (num < 1 || num == undefined){
+    return '1以上が送信されなかったため終了します。'
+  }
+   if (num == 1 || num == 2){
+     return num+'は素数';
+   }
+  for (i = 2;i <= halfnum;i++){
+    cachei = i;
+    rem = num % cachei;
+    if(rem == 0){
+      result += cachei;
+      isPrime = 1;
+      cachenum = num;
+      if (isEnd == 0){
+      search2(num / cachei);
+      }
+    }
+    else{
+      continue;
+    }
+  }
+  if(isPrime == 0){
+    result = num + 'は素数';
+    return result;
+  }
+  else if (isPrime == 1){
+    return result;
+  }
+}
+
+function search2(spnum){
+halfnum = spnum / 2;
+  for (i = 2;i <= spnum;i++){
+    if (halfnum < i){
+      isEnd = 1;
+      result += '\n' + spnum;
+      break;
+    }
+    cachei = i;
+    rem = spnum % cachei;
+    if(rem == 0){
+      result += '\n' + cachei;
+      search2(spnum / cachei);
+      break;
+    }
+    else{
+      continue;
     }
   }
 }
