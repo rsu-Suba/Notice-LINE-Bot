@@ -495,6 +495,9 @@ halfnum = num / 2;
 function search2(spnum){
 halfnum = spnum / 2;
   for (i = 2;i <= spnum;i++){
+   if (i > 2 && (i % 2) == 0){
+	    continue;
+    }
     if (halfnum < i){
       isEnd = 1;
       result += '\n' + spnum;
